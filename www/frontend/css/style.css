@@ -1,0 +1,192 @@
+*,p,h2,h1,img,body{
+    margin: 0;
+    padding: 0;
+}
+
+/*.clearfix{overflow:auto;_height:1%}*/
+img{vertical-align:bottom;}
+html, body {
+    overflow:auto;
+    overflow-x: hidden;
+    background-color: #ececec;
+	font-family:微软雅黑,宋体, "Arial Black", Gadget, sans-serif;
+	font-size:12px; color:#555555;
+}
+
+#major-container {
+    width:960px;
+    height: 600px;
+    position:absolute;
+    left: 50%;
+    top: 0;
+    margin: 0 0 0 -480px;
+}
+
+.img-wrapper{
+    position:relative;
+    width: 1920px;
+    margin-left: -480px;
+}
+
+
+.img-inner{
+    margin-left: 480px;
+}
+
+
+
+#logo-wrapper{
+    background-color: #1835ab;
+}
+
+
+#nav-wrapper{
+    background-image: url(../images/top_bg.jpg);
+    background-repeat: repeat-x;
+}
+
+#nav-img{
+    width: 1023px;
+    height: 63px;
+    background-image: url(../images/Nav.jpg);
+}
+
+#banner-img{
+    margin-left: -8px;
+}
+
+#nav{
+    padding-top: 35px;
+}
+
+#nav li{
+    float:left;
+    list-style:none;
+    margin-left:45px ;
+}
+
+#nav li a{
+    color:#eee;
+    text-decoration:none;
+}
+
+#nav li a:hover{
+    color:#666;
+}
+
+#anli-section {
+    background-color: #fff;
+    width: 1023px;
+    position:relative;
+}
+
+#anli-left{
+    background-color: #fff;
+    width: 675px;
+    float:left;
+}
+
+#anli-right{
+    background-color: #fff;
+    width: 345px;
+    height: 100%;
+    float:left;
+    border-right:1px solid blue;
+    border-left:1px solid blue;
+}
+
+.anli {
+    margin: 10px 40px 20px 60px;
+    display:block;
+}
+
+.anli h1{
+    color: blue;
+    font-size:22px;
+    margin-bottom: 20px;
+}
+
+.anli img{
+    float:left;
+}
+
+
+.anli p{
+     margin-left: 230px;
+}
+
+#zixun {
+    position:absolute;
+    right:1px;
+    bottom:0;
+    border-right:1px solid blue;
+    border-left:1px solid blue;
+}
+
+#zixunform {
+    padding: 20px;
+}
+
+.wenda{ margin:20px 0;}
+.wenda h2{
+	margin:0px; padding:0px;
+	font:宋体;
+	font-size:12px;
+    background-image: url(../images/da.jpg);
+    background-repeat: no-repeat;
+    padding-left: 30px; line-height:30px;
+    height:30px;
+	margin:0 10px 0 10px;
+}
+
+.wenda p{
+	background-image: url(../images/wen.jpg);
+    background-repeat: no-repeat;
+    padding-left: 30px;
+    line-height: 18px;
+    margin:0 10px 0 10px;
+}
+
+#dinggou-section{
+    width: 1023px;
+    height: 595px;
+    background-image: url(../images/dg.jpg);
+    background-repeat: no-repeat;
+}
+
+#dinggouform {
+    padding: 180px 0 0 130px;
+    font-family: "Tahoma";
+    width: 400px;
+}
+
+.form-group{
+    margin: 10px 0;
+}
+
+.form-group label {
+    vertical-align:middle;
+}
+
+.form-group input {
+    vertical-align: middle;
+}
+
+#city-choser {
+    display:inline;
+}
+
+#address {
+    width: 310px;
+}
+
+#dgformsubmit{
+	font-size: 20px;
+	background-color: red;
+	color: white;
+	border-radius: 5px;
+	padding: 5px 15px;
+	margin-left: 130px; border:0px;
+}
+.form-group input{ height:18px; line-height:18px;}
+.footer{ margin:20px 0; line-height:18px;}

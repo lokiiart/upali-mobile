@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="dataSourceStorageLocal">
+    <data-source name="MySQL - awesome@localhost" uuid="08e079a2-175c-4056-a7eb-cce458d6c825">
+      <secret-storage>master_key</secret-storage>
+      <user-name>root</user-name>
+      <schema-pattern>awesome.*</schema-pattern>
+      <default-schemas>awesome.*</default-schemas>
+    </data-source>
+  </component>
+</project>

@@ -1,0 +1,238 @@
+INFO:root:found model: User (table: users)
+INFO:root:  found mapping: passwd ==> <StringField, varchar(50):None>
+INFO:root:  found mapping: created_at ==> <FloatField, real:None>
+INFO:root:  found mapping: image ==> <StringField, varchar(500):None>
+INFO:root:  found mapping: email ==> <StringField, varchar(50):None>
+INFO:root:  found mapping: admin ==> <BooleanField, boolean:None>
+INFO:root:  found mapping: name ==> <StringField, varchar(50):None>
+INFO:root:  found mapping: id ==> <StringField, varchar(50):None>
+INFO:root:found model: Blog (table: blogs)
+INFO:root:  found mapping: user_name ==> <StringField, varchar(50):None>
+INFO:root:  found mapping: created_at ==> <FloatField, real:None>
+INFO:root:  found mapping: summary ==> <StringField, varchar(200):None>
+INFO:root:  found mapping: user_image ==> <StringField, varchar(500):None>
+INFO:root:  found mapping: user_id ==> <StringField, varchar(50):None>
+INFO:root:  found mapping: content ==> <TextField, text:None>
+INFO:root:  found mapping: name ==> <StringField, varchar(50):None>
+INFO:root:  found mapping: id ==> <StringField, varchar(50):None>
+INFO:root:found model: Order (table: orders)
+INFO:root:  found mapping: phone ==> <StringField, varchar(50):None>
+INFO:root:  found mapping: flow ==> <StringField, varchar(50):None>
+INFO:root:  found mapping: address ==> <StringField, varchar(500):None>
+INFO:root:  found mapping: customer ==> <StringField, varchar(50):None>
+INFO:root:  found mapping: order_id ==> <StringField, varchar(50):None>
+INFO:root:  found mapping: notes ==> <TextField, text:None>
+INFO:root:  found mapping: payment ==> <StringField, varchar(50):None>
+INFO:root:  found mapping: effictive ==> <StringField, varchar(50):None>
+INFO:root:  found mapping: price ==> <StringField, varchar(50):None>
+INFO:root:  found mapping: created_at ==> <FloatField, real:None>
+INFO:root:found model: Comment (table: comments)
+INFO:root:  found mapping: user_name ==> <StringField, varchar(50):None>
+INFO:root:  found mapping: created_at ==> <FloatField, real:None>
+INFO:root:  found mapping: user_image ==> <StringField, varchar(500):None>
+INFO:root:  found mapping: user_id ==> <StringField, varchar(50):None>
+INFO:root:  found mapping: content ==> <TextField, text:None>
+INFO:root:  found mapping: blog_id ==> <StringField, varchar(50):None>
+INFO:root:  found mapping: id ==> <StringField, varchar(50):None>
+INFO:root:create database connection pool...
+INFO:root:init jinja2...
+INFO:root:set jinja2 template path: /home/loki/upali/www/upali
+INFO:root:add route GET /api/blogs => api_blogs(page)
+INFO:root:add route GET /api/comments => api_comments(page)
+INFO:root:add route POST /api/blogs => api_create_blog(request, name, summary, content)
+INFO:root:add route POST /api/blogs/{id}/comments => api_create_comment(id, request, content)
+INFO:root:add route POST /api/orders => api_create_order(request, customer, phone, province, city, area, address, payment, notes, price)
+INFO:root:add route POST /api/blogs/{id}/delete => api_delete_blog(request, id)
+INFO:root:add route POST /api/comments/{id}/delete => api_delete_comments(id, request)
+INFO:root:add route GET /api/blogs/{id} => api_get_blog(id)
+INFO:root:add route GET /api/orders/{id} => api_get_order(id)
+INFO:root:add route GET /api/users => api_get_users(page)
+INFO:root:add route GET /api/orders => api_orders(page)
+INFO:root:add route POST /api/users => api_register_user(email, name, passwd)
+INFO:root:add route POST /api/blogs/{id} => api_update_blog(id, request, name, summary, content)
+INFO:root:add route POST /api/authenticate => authenticate(email, passwd)
+INFO:root:add route GET /dashboard/i => dashboard(request)
+INFO:root:add route GET /blog/{id} => get_blog(id)
+INFO:root:add route GET / => index()
+INFO:root:add route GET /manage/ => manage()
+INFO:root:add route GET /manage/blogs => manage_blogs(page)
+INFO:root:add route GET /manage/comments => manage_comments(page)
+INFO:root:add route GET /manage/blogs/create => manage_create_blog()
+INFO:root:add route GET /manage/blogs/edit => manage_edit_blog(id)
+INFO:root:add route GET /manage/users => manage_users(page)
+INFO:root:add route GET /register => register()
+INFO:root:add route GET /signin => signin()
+INFO:root:add route GET /signout => signout(request)
+INFO:root:add static /static/ => /home/loki/upali/www/upali
+INFO:root:server started at http://127.0.0.1:9000...
+INFO:root:found model: User (table: users)
+INFO:root:  found mapping: email ==> <StringField, varchar(50):None>
+INFO:root:  found mapping: passwd ==> <StringField, varchar(50):None>
+INFO:root:  found mapping: created_at ==> <FloatField, real:None>
+INFO:root:  found mapping: id ==> <StringField, varchar(50):None>
+INFO:root:  found mapping: admin ==> <BooleanField, boolean:None>
+INFO:root:  found mapping: name ==> <StringField, varchar(50):None>
+INFO:root:  found mapping: image ==> <StringField, varchar(500):None>
+INFO:root:found model: Blog (table: blogs)
+INFO:root:  found mapping: user_name ==> <StringField, varchar(50):None>
+INFO:root:  found mapping: content ==> <TextField, text:None>
+INFO:root:  found mapping: name ==> <StringField, varchar(50):None>
+INFO:root:  found mapping: user_image ==> <StringField, varchar(500):None>
+INFO:root:  found mapping: created_at ==> <FloatField, real:None>
+INFO:root:  found mapping: id ==> <StringField, varchar(50):None>
+INFO:root:  found mapping: user_id ==> <StringField, varchar(50):None>
+INFO:root:  found mapping: summary ==> <StringField, varchar(200):None>
+INFO:root:found model: Order (table: orders)
+INFO:root:  found mapping: effictive ==> <StringField, varchar(50):None>
+INFO:root:  found mapping: payment ==> <StringField, varchar(50):None>
+INFO:root:  found mapping: flow ==> <StringField, varchar(50):None>
+INFO:root:  found mapping: created_at ==> <FloatField, real:None>
+INFO:root:  found mapping: order_id ==> <StringField, varchar(50):None>
+INFO:root:  found mapping: customer ==> <StringField, varchar(50):None>
+INFO:root:  found mapping: price ==> <StringField, varchar(50):None>
+INFO:root:  found mapping: notes ==> <TextField, text:None>
+INFO:root:  found mapping: phone ==> <StringField, varchar(50):None>
+INFO:root:  found mapping: address ==> <StringField, varchar(500):None>
+INFO:root:found model: Comment (table: comments)
+INFO:root:  found mapping: user_name ==> <StringField, varchar(50):None>
+INFO:root:  found mapping: content ==> <TextField, text:None>
+INFO:root:  found mapping: blog_id ==> <StringField, varchar(50):None>
+INFO:root:  found mapping: user_image ==> <StringField, varchar(500):None>
+INFO:root:  found mapping: created_at ==> <FloatField, real:None>
+INFO:root:  found mapping: id ==> <StringField, varchar(50):None>
+INFO:root:  found mapping: user_id ==> <StringField, varchar(50):None>
+INFO:root:create database connection pool...
+INFO:root:init jinja2...
+INFO:root:set jinja2 template path: /home/loki/upali/www/upali
+INFO:root:add route GET /api/blogs => api_blogs(page)
+INFO:root:add route GET /api/comments => api_comments(page)
+INFO:root:add route POST /api/blogs => api_create_blog(request, name, summary, content)
+INFO:root:add route POST /api/blogs/{id}/comments => api_create_comment(id, request, content)
+INFO:root:add route POST /api/orders => api_create_order(request, customer, phone, province, city, area, address, payment, notes, price)
+INFO:root:add route POST /api/blogs/{id}/delete => api_delete_blog(request, id)
+INFO:root:add route POST /api/comments/{id}/delete => api_delete_comments(id, request)
+INFO:root:add route GET /api/blogs/{id} => api_get_blog(id)
+INFO:root:add route GET /api/orders/{id} => api_get_order(id)
+INFO:root:add route GET /api/users => api_get_users(page)
+INFO:root:add route GET /api/orders => api_orders(page)
+INFO:root:add route POST /api/users => api_register_user(email, name, passwd)
+INFO:root:add route POST /api/blogs/{id} => api_update_blog(id, request, name, summary, content)
+INFO:root:add route POST /api/authenticate => authenticate(email, passwd)
+INFO:root:add route GET /dashboard/i => dashboard(request)
+INFO:root:add route GET /blog/{id} => get_blog(id)
+INFO:root:add route GET / => index()
+INFO:root:add route GET /manage/ => manage()
+INFO:root:add route GET /manage/blogs => manage_blogs(page)
+INFO:root:add route GET /manage/comments => manage_comments(page)
+INFO:root:add route GET /manage/blogs/create => manage_create_blog()
+INFO:root:add route GET /manage/blogs/edit => manage_edit_blog(id)
+INFO:root:add route GET /manage/users => manage_users(page)
+INFO:root:add route GET /register => register()
+INFO:root:add route GET /signin => signin()
+INFO:root:add route GET /signout => signout(request)
+INFO:root:add static /static/ => /home/loki/upali/www/upali
+INFO:root:server started at http://127.0.0.1:9000...
+INFO:root:Request: GET /
+INFO:root:check user: GET /
+INFO:root:Response handler...
+INFO:root:call with args: {}
+ERROR:aiohttp.web:Error handling request
+Traceback (most recent call last):
+  File "/usr/local/python3/lib/python3.5/site-packages/aiohttp/server.py", line 266, in start
+    yield from self.handle_request(message, payload)
+  File "/usr/local/python3/lib/python3.5/site-packages/aiohttp/web.py", line 90, in handle_request
+    resp = yield from handler(request)
+  File "/home/loki/upali/www/app.py", line 52, in logger
+    return (yield from handler(request))
+  File "/home/loki/upali/www/app.py", line 69, in auth
+    return (yield from handler(request))
+  File "/home/loki/upali/www/app.py", line 112, in response
+    resp = web.Response(body=app['__templating__'].get_template(template).render(**r).encode('utf-8'))
+  File "/usr/local/python3/lib/python3.5/site-packages/jinja2/environment.py", line 812, in get_template
+    return self._load_template(name, self.make_globals(globals))
+  File "/usr/local/python3/lib/python3.5/site-packages/jinja2/environment.py", line 774, in _load_template
+    cache_key = self.loader.get_source(self, name)[1]
+  File "/usr/local/python3/lib/python3.5/site-packages/jinja2/loaders.py", line 187, in get_source
+    raise TemplateNotFound(template)
+jinja2.exceptions.TemplateNotFound: index.html
+INFO:aiohttp.access:127.0.0.1 - - [14/Apr/2016:12:58:40 +0000] "GET / HTTP/1.0" 500 170 "-" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.66 Safari/537.36"
+INFO:root:Request: GET /favicon.ico
+INFO:root:check user: GET /favicon.ico
+INFO:root:Response handler...
+INFO:aiohttp.access:127.0.0.1 - - [14/Apr/2016:12:58:40 +0000] "GET /favicon.ico HTTP/1.0" 404 14 "-" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.66 Safari/537.36"
+INFO:root:Request: GET /
+INFO:root:check user: GET /
+INFO:root:Response handler...
+INFO:root:call with args: {}
+ERROR:aiohttp.web:Error handling request
+Traceback (most recent call last):
+  File "/usr/local/python3/lib/python3.5/site-packages/aiohttp/server.py", line 266, in start
+    yield from self.handle_request(message, payload)
+  File "/usr/local/python3/lib/python3.5/site-packages/aiohttp/web.py", line 90, in handle_request
+    resp = yield from handler(request)
+  File "/home/loki/upali/www/app.py", line 52, in logger
+    return (yield from handler(request))
+  File "/home/loki/upali/www/app.py", line 69, in auth
+    return (yield from handler(request))
+  File "/home/loki/upali/www/app.py", line 112, in response
+    resp = web.Response(body=app['__templating__'].get_template(template).render(**r).encode('utf-8'))
+  File "/usr/local/python3/lib/python3.5/site-packages/jinja2/environment.py", line 812, in get_template
+    return self._load_template(name, self.make_globals(globals))
+  File "/usr/local/python3/lib/python3.5/site-packages/jinja2/environment.py", line 774, in _load_template
+    cache_key = self.loader.get_source(self, name)[1]
+  File "/usr/local/python3/lib/python3.5/site-packages/jinja2/loaders.py", line 187, in get_source
+    raise TemplateNotFound(template)
+jinja2.exceptions.TemplateNotFound: index.html
+INFO:aiohttp.access:127.0.0.1 - - [14/Apr/2016:12:59:43 +0000] "GET / HTTP/1.0" 500 170 "-" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.66 Safari/537.36"
+INFO:root:Request: GET /index.html
+INFO:root:check user: GET /index.html
+INFO:root:Response handler...
+INFO:aiohttp.access:127.0.0.1 - - [14/Apr/2016:12:59:47 +0000] "GET /index.html HTTP/1.0" 404 14 "-" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.66 Safari/537.36"
+INFO:root:Request: GET /
+INFO:root:check user: GET /
+INFO:root:Response handler...
+INFO:root:call with args: {}
+ERROR:aiohttp.web:Error handling request
+Traceback (most recent call last):
+  File "/usr/local/python3/lib/python3.5/site-packages/aiohttp/server.py", line 266, in start
+    yield from self.handle_request(message, payload)
+  File "/usr/local/python3/lib/python3.5/site-packages/aiohttp/web.py", line 90, in handle_request
+    resp = yield from handler(request)
+  File "/home/loki/upali/www/app.py", line 52, in logger
+    return (yield from handler(request))
+  File "/home/loki/upali/www/app.py", line 69, in auth
+    return (yield from handler(request))
+  File "/home/loki/upali/www/app.py", line 112, in response
+    resp = web.Response(body=app['__templating__'].get_template(template).render(**r).encode('utf-8'))
+  File "/usr/local/python3/lib/python3.5/site-packages/jinja2/environment.py", line 812, in get_template
+    return self._load_template(name, self.make_globals(globals))
+  File "/usr/local/python3/lib/python3.5/site-packages/jinja2/environment.py", line 774, in _load_template
+    cache_key = self.loader.get_source(self, name)[1]
+  File "/usr/local/python3/lib/python3.5/site-packages/jinja2/loaders.py", line 187, in get_source
+    raise TemplateNotFound(template)
+jinja2.exceptions.TemplateNotFound: index.html
+INFO:aiohttp.access:127.0.0.1 - - [14/Apr/2016:13:02:31 +0000] "GET / HTTP/1.0" 500 170 "-" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.66 Safari/537.36"
+INFO:root:Request: GET /
+INFO:root:check user: GET /
+INFO:root:Response handler...
+INFO:root:call with args: {}
+ERROR:aiohttp.web:Error handling request
+Traceback (most recent call last):
+  File "/usr/local/python3/lib/python3.5/site-packages/aiohttp/server.py", line 266, in start
+    yield from self.handle_request(message, payload)
+  File "/usr/local/python3/lib/python3.5/site-packages/aiohttp/web.py", line 90, in handle_request
+    resp = yield from handler(request)
+  File "/home/loki/upali/www/app.py", line 52, in logger
+    return (yield from handler(request))
+  File "/home/loki/upali/www/app.py", line 69, in auth
+    return (yield from handler(request))
+  File "/home/loki/upali/www/app.py", line 112, in response
+    resp = web.Response(body=app['__templating__'].get_template(template).render(**r).encode('utf-8'))
+  File "/usr/local/python3/lib/python3.5/site-packages/jinja2/environment.py", line 812, in get_template
+    return self._load_template(name, self.make_globals(globals))
+  File "/usr/local/python3/lib/python3.5/site-packages/jinja2/environment.py", line 774, in _load_template
+    cache_key = self.loader.get_source(self, name)[1]
+  File "/usr/local/python3/lib/python3.5/site-packages/jinja2/loaders.py", line 187, in get_source
+    raise TemplateNotFound(template)
+jinja2.exceptions.TemplateNotFound: index.html
+INFO:aiohttp.access:127.0.0.1 - - [14/Apr/2016:13:04:39 +0000] "GET / HTTP/1.0" 500 170 "-" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.66 Safari/537.36"
