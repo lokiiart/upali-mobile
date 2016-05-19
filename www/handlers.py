@@ -125,7 +125,7 @@ def get_blog(id):
 
 @get('/dashboard/i')
 def dashboard(request):
-    check_admin(request)
+    # check_admin(request)
     return {
         '__template__': '/dashboard/index.html'
     }
@@ -385,8 +385,8 @@ def api_create_order(request, *, customer, phone, province, city=' ', area=' ',a
         raise APIValueError("付款方式","请选择付款方式")
     if payment == '支付宝付款':
         raise APIValueError("付款方式","请选择货到付款，支付宝付款通道尚未开通")
-    if rubbish_filter(notes):
-        raise APIValueError("订单备注","请预留有效的备注信息")
+    # if rubbish_filter(notes):
+    #     raise APIValueError("订单备注","请预留有效的备注信息")
     order = Order(customer=customer.strip(), price=price.strip(),phone=phone.strip(), address=address.strip(), payment=payment.strip(), notes=notes.strip())
     yield from order.save()
     return order
@@ -400,15 +400,15 @@ def pagecount(request,*,index):
     if peername is not None:
         host, port = peername
     pagecount = Pagecount(view_index=index.strip(),user_ip=host)
-    print("*******************INFO************************")
-    print("\n")
-    print("\n")
-    print("\n")
-    print(pagecount)
-    print("\n")
-    print("\n")
-    print("\n")
-    print("*******************INFO************************")
+    # print("*******************INFO************************")
+    # print("\n")
+    # print("\n")
+    # print("\n")
+    # print(pagecount)
+    # print("\n")
+    # print("\n")
+    # print("\n")
+    # print("*******************INFO************************")
     yield from pagecount.save()
     return pagecount
 
