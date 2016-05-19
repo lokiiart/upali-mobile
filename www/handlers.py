@@ -125,7 +125,7 @@ def get_blog(id):
 
 @get('/dashboard/i')
 def dashboard(request):
-    check_admin(request)
+    # check_admin(request)
     return {
         '__template__': '/dashboard/index.html'
     }
