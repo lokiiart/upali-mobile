@@ -10,7 +10,6 @@ sina.html
 # Packages
 *.egg
 *.egg-info
-dist
 build
 eggs
 parts
@@ -42,7 +41,6 @@ nosetests.xml
 Icon?
 ehthumbs.db
 Thumbs.db
-dist
 MANIFEST
 
 # Translations
