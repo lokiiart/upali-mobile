@@ -7,10 +7,8 @@ __author__ = 'Michael Liao'
 
 import re, time, json, logging, hashlib, base64, asyncio
 from collections import OrderedDict
-import hashlib
 
 import markdown2
-import requests
 import json
 
 from aiohttp import web
