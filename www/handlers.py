@@ -6,8 +6,12 @@ __author__ = 'Michael Liao'
 ' url handlers '
 
 import re, time, json, logging, hashlib, base64, asyncio
+from collections import OrderedDict
+import hashlib
 
 import markdown2
+import requests
+import json
 
 from aiohttp import web
 
@@ -383,13 +387,63 @@ def api_create_order(request, *, customer, phone, province, city=' ', area=' ',a
     address = province+city+area.strip()+address
     if not payment or not payment.strip() or rubbish_filter(payment):
         raise APIValueError("付款方式","请选择付款方式")
-    if payment == '支付宝付款':
-        raise APIValueError("付款方式","请选择货到付款，支付宝付款通道尚未开通")
     if rubbish_filter(notes):
         raise APIValueError("订单备注","请预留有效的备注信息")
     order = Order(customer=customer.strip(), price=price.strip(),phone=phone.strip(), address=address.strip(), payment=payment.strip(), notes=notes.strip())
+    if(payment== '支付宝'):
+        return order
     yield from order.save()
     return order
+
+@post('/api/alipay_orders')
+def api_create_alipay_order(request, *, customer, phone, province, city=' ', area=' ',address, payment, notes, price):
+    if not price or not price.strip() or rubbish_filter(price):
+        return "价格"
+
+    if not customer or not customer.strip() or rubbish_filter(customer):
+        return "价格"
+
+    if not phone or not phone.strip() or not phone_filter(phone):
+        return "价格"
+
+    if not province or not city  or not address or not province.strip() or not city.strip()  or not address.strip() or rubbish_filter(province) or rubbish_filter(city) or area_filter(area) or rubbish_filter(address):
+        return "价格"
+    address = province+city+area.strip()+address
+    if not payment or not payment.strip() or rubbish_filter(payment):
+        return "价格"
+    if rubbish_filter(notes):
+        return "价格"
+    order = Order(customer=customer.strip(), price=price.strip(),phone=phone.strip(), address=address.strip(), payment=payment.strip(), notes=notes.strip())
+    yield from order.save()
+    alipay_order = {
+        # 'service': 'create_direct_pay_by_user',
+        'service': 'alipay.wap.create.direct.pay.by.user',
+        'partner': '2088221413889518',
+        'seller_id': '2088221413889518',
+        'payment_type': '1',
+        'out_trade_no': order.getValue('order_id'),
+        'subject': "优波粒"+order.getValue('price')+"套装",
+        'total_fee': order.getValue('price'),
+        'show_url': 'http://www.51upali.com',
+        '_input_charset': 'utf-8'
+    }
+    alipay_sort_order=OrderedDict(sorted(alipay_order.items()))
+    alipay_sort_order["sign"]=alipay_sign(alipay_sort_order)
+    return {
+        '__template__': 'alipay.html',
+        'order': alipay_sort_order,
+    }
+
+def alipay_sign(dict):
+    list = []
+    for key,val in dict.items():
+        list.append(key+'='+val)
+    addicon="&"
+    md5_key='h1zyv5kci0tftioi6l4eqc7wgoq6yjv0'
+    beforesign=addicon.join(list)
+    beforesign+=md5_key
+    aftersign = hashlib.md5(beforesign.encode('utf-8'))
+    return aftersign.hexdigest()
 
 @get('/pagecount/{index}')
 def pagecount(request,*,index):

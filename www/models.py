@@ -12,7 +12,8 @@ import time, uuid
 from orm import Model, StringField, BooleanField, FloatField, TextField, IntegerField
 
 def next_id():
-    return '%015d%s000' % (int(time.time() * 1000), uuid.uuid4().hex)
+    # return '%015d%s000' % (int(time.time() * 1000), uuid.uuid4().hex)
+    return uuid.uuid1().hex
 
 class User(Model):
     __table__ = 'users'
@@ -48,7 +49,7 @@ class Pagecount(Model):
 class Order(Model):
     __table__ = 'orders'
     order_id = StringField(primary_key=True, default=next_id, ddl='varchar(50)')
-    created_at = FloatField(default=time.time)
+    created_at = StringField(default=time.strftime("%Y-%m-%d %H:%M:%S", time.localtime()) )
     customer = StringField(ddl='varchar(50)')
     phone = StringField(ddl='varchar(50)')
     price = StringField(ddl='varchar(50)')
