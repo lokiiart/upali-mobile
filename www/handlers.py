@@ -396,21 +396,21 @@ def api_create_order(request, *, customer, phone, province, city=' ', area=' ',a
 @post('/api/alipay_orders')
 def api_create_alipay_order(request, *, customer, phone, province, city=' ', area=' ',address, payment, notes, price):
     if not price or not price.strip() or rubbish_filter(price):
-        return "价格"
+        return "请选择产品"
 
     if not customer or not customer.strip() or rubbish_filter(customer):
-        return "价格"
+        return "请填写姓名"
 
     if not phone or not phone.strip() or not phone_filter(phone):
-        return "价格"
+        return "请输入正确的手机号"
 
     if not province or not city  or not address or not province.strip() or not city.strip()  or not address.strip() or rubbish_filter(province) or rubbish_filter(city) or area_filter(area) or rubbish_filter(address):
-        return "价格"
+        return "请填写完整的地址"
     address = province+city+area.strip()+address
     if not payment or not payment.strip() or rubbish_filter(payment):
-        return "价格"
+        return "请选择付款方式"
     if rubbish_filter(notes):
-        return "价格"
+        return "请正确填写备注信息"
     order = Order(customer=customer.strip(), price=price.strip(),phone=phone.strip(), address=address.strip(), payment=payment.strip(), notes=notes.strip())
     yield from order.save()
     alipay_order = {
