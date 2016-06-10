@@ -216,8 +216,8 @@ class Order extends React.Component {
                 </fieldset>
                 <fieldset>
                 <legend>付款方式</legend>
-                <input type="radio" name="payment" value="货到付款" defaultChecked="checked" onChange={this.handlePayment.bind(this)}  />货到付款
-                <input type="radio" name="payment" value="支付宝" onChange={this.handlePayment.bind(this)}   />支付宝付款
+                <input type="radio" name="payment" value="货到付款" onChange={this.handlePayment.bind(this)}  />货到付款
+                <input type="radio" name="payment" value="支付宝" defaultChecked="checked" onChange={this.handlePayment.bind(this)}   />支付宝付款
                 </fieldset>
                 <fieldset>
                 <legend>备注信息</legend>
