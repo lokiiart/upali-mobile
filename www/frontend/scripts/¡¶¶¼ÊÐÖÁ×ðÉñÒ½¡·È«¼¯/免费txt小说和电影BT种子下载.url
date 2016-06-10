@@ -1,0 +1,13 @@
+[DEFAULT]
+BASEURL=http://www.wrshu.com/
+[DOC_aswift_0]
+BASEURL=http://www.wrshu.com/
+ORIGURL=
+[InternetShortcut]
+URL=http://www.zei8.net/
+IDList=
+IconFile=http://www.wrshu.com/favicon.ico
+IconIndex=1
+HotKey=0
+[{000214A0-0000-0000-C000-000000000046}]
+Prop3=19,2
