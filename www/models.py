@@ -49,7 +49,7 @@ class Pagecount(Model):
 class Order(Model):
     __table__ = 'orders'
     order_id = StringField(primary_key=True, default=next_id, ddl='varchar(50)')
-    created_at = StringField(default=time.strftime("%Y-%m-%d %H:%M:%S", time.time()) )
+    created_at = StringField(default=time.strftime("%Y-%m-%d %H:%M:%S", time.localtime()) )
     customer = StringField(ddl='varchar(50)')
     phone = StringField(ddl='varchar(50)')
     price = StringField(ddl='varchar(50)')
