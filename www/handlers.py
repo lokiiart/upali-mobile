@@ -11649,7 +11649,7 @@ def api_delete_blog(request, *, id):
 def api_orders(*, page='1'):
     page_index = get_page_index(page)
     num = yield from Order.findNumber('count(order_id)')
-    p = Page(num, page_index)
+    p = Page(num, page_index, 30)
     if num == 0:
         return dict(page=p, orders=())
     orders = yield from Order.findAll(orderBy='created_at desc', limit=(p.offset, p.limit))
