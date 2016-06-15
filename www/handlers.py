@@ -11652,7 +11652,7 @@ def api_orders(*, page='2'):
     p = Page(num, page_index)
     if num == 0:
         return dict(page=p, orders=())
-    blogs = yield from Blog.findAll(orderBy='created_at desc', limit=(p.offset, 30))
+    orders = yield from Order.findAll(orderBy='created_at desc', limit=(p.offset, 30))
     return dict(page=p, orders=orders)
 
 @get('/api/orders/{id}')
