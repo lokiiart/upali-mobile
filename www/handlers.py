@@ -11646,7 +11646,7 @@ def api_delete_blog(request, *, id):
 
 
 @get('/api/orders')
-def api_orders(*, page='1'):
+def api_orders(*, page='2'):
     page_index = get_page_index(page)
     num = yield from Order.findNumber('count(id)')
     p = Page(num, page_index)
