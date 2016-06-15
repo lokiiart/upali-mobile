@@ -7,6 +7,7 @@ __author__ = 'Michael Liao'
 
 import re, time, json, logging, hashlib, base64, asyncio
 from collections import OrderedDict
+from datetime import datetime
 
 import markdown2
 import json
@@ -11593,15 +11594,6 @@ def api_register_user(*, email, name, passwd):
     r.body = json.dumps(user, ensure_ascii=False).encode('utf-8')
     return r
 
-@get('/api/blogs')
-def api_blogs(*, page='1'):
-    page_index = get_page_index(page)
-    num = yield from Blog.findNumber('count(id)')
-    p = Page(num, page_index)
-    if num == 0:
-        return dict(page=p, blogs=())
-    blogs = yield from Blog.findAll(orderBy='created_at desc', limit=(p.offset, p.limit))
-    return dict(page=p, blogs=blogs)
 
 @get('/api/blogs/{id}')
 def api_get_blog(*, id):
@@ -11645,14 +11637,24 @@ def api_delete_blog(request, *, id):
     return dict(id=id)
 
 
-@get('/api/orders')
-def api_orders(*, page='2'):
+@get('/api/blogs')
+def api_blogs(*, page='1'):
     page_index = get_page_index(page)
-    num = yield from Order.findNumber('count(id)')
+    num = yield from Blog.findNumber('count(id)')
     p = Page(num, page_index)
     if num == 0:
+        return dict(page=p, blogs=())
+    blogs = yield from Blog.findAll(orderBy='created_at desc', limit=(p.offset, p.limit))
+    return dict(page=p, blogs=blogs)
+
+@get('/api/orders')
+def api_orders(*, page='1'):
+    page_index = get_page_index(page)
+    num = yield from Order.findNumber('count(order_id)')
+    p = Page(num, page_index, num)
+    if num == 0:
         return dict(page=p, orders=())
-    orders = yield from Order.findAll(orderBy='created_at desc', limit=(p.offset, 30))
+    orders = yield from Order.findAll(orderBy='created_at desc', limit=(p.offset, p.limit))
     return dict(page=p, orders=orders)
 
 @get('/api/orders/{id}')
@@ -11662,6 +11664,8 @@ def api_get_order(*, id):
 
 @post('/api/orders')
 def api_create_order(request, *, customer, price, phone, province, city, area, address, notes, payment, originalprice):
+# def api_create_order(request, *,customer ):
+    # return 'test';
     if not price or not price.strip() or rubbish_filter(price):
         raise APIValueError('产品', '请选择产品')
 
@@ -11678,15 +11682,17 @@ def api_create_order(request, *, customer, price, phone, province, city, area, a
         raise APIValueError("付款方式","请选择付款方式")
     if rubbish_filter(notes):
         raise APIValueError("订单备注","请预留有效的备注信息")
-    order = Order(customer=customer.strip(), price=price.strip(),phone=phone.strip(), address=address.strip(), payment=payment.strip(), notes=notes.strip())
+    order = Order(customer=customer.strip(), price=price.strip(),phone=phone.strip(), address=address.strip(), payment=payment.strip(), notes=notes.strip(),created_at=datetime.now().strftime("%Y-%m-%d %H:%M:%S"))
     if(payment== '支付宝'):
         return order
     if(payment=='货到付款'):
         if not originalprice or not originalprice.strip() or rubbish_filter(originalprice):
             raise APIValueError('产品', '请选择产品')
-        order = Order(customer=customer.strip(), price=originalprice.strip(),phone=phone.strip(), address=address.strip(), payment=payment.strip(), notes=notes.strip())
+        order = Order(customer=customer.strip(), price=originalprice.strip(),phone=phone.strip(), address=address.strip(), payment=payment.strip(), notes=notes.strip(),created_at=datetime.now().strftime("%Y-%m-%d %H:%M:%S"))
     yield from order.save()
     return order
+
+
 
 @post('/api/alipay_orders')
 def api_create_alipay_order(request, *, customer, phone, province, city=' ', area=' ',address, payment, notes, price):
@@ -11706,7 +11712,7 @@ def api_create_alipay_order(request, *, customer, phone, province, city=' ', are
         return "请选择付款方式"
     if rubbish_filter(notes):
         return "请正确填写备注信息"
-    order = Order(customer=customer.strip(), price=price.strip(),phone=phone.strip(), address=address.strip(), payment=payment.strip(), notes=notes.strip())
+    order = Order(customer=customer.strip(), price=price.strip(),phone=phone.strip(), address=address.strip(), payment=payment.strip(), notes=notes.strip(),created_at=datetime.now().strftime("%Y-%m-%d %H:%M:%S"))
     yield from order.save()
     alipay_order = {
         # 'service': 'create_direct_pay_by_user',

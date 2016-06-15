@@ -7,7 +7,8 @@ Models for user, blog, comment.
 
 __author__ = 'Michael Liao'
 
-import time, uuid
+import  time, uuid
+from datetime import datetime
 
 from orm import Model, StringField, BooleanField, FloatField, TextField, IntegerField
 
@@ -48,8 +49,11 @@ class Pagecount(Model):
 
 class Order(Model):
     __table__ = 'orders'
+
     order_id = StringField(primary_key=True, default=next_id, ddl='varchar(50)')
-    created_at = StringField(default=time.strftime("%Y-%m-%d %H:%M:%S", time.localtime()) )
+    # created_at = StringField(default=time.strftime("%Y-%m-%d %H:%M:%S", time.localtime(time.time())) )
+    # created_at = StringField(default=datetime.now().strftime("%Y-%m-%d %H:%M:%S"))
+    created_at = StringField(ddl='varchar(50)')
     customer = StringField(ddl='varchar(50)')
     phone = StringField(ddl='varchar(50)')
     price = StringField(ddl='varchar(50)')
