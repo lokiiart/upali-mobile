@@ -11661,10 +11661,7 @@ def api_get_order(*, id):
     return order
 
 @post('/api/orders')
-def api_create_order(request, *, customer, phone, province, city=' ', area=' ',address, payment, notes, price, originalprice):
-
-    # check_admin(request)
-
+def api_create_order(request, *, customer, price, phone, province, city, area, address, notes, payment, originalprice):
     if not price or not price.strip() or rubbish_filter(price):
         raise APIValueError('产品', '请选择产品')
 
