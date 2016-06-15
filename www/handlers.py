@@ -11657,7 +11657,7 @@ def api_orders(*, page='2'):
 
 @get('/api/orders/{id}')
 def api_get_order(*, id):
-    blog = yield from Order.find(id)
+    order = yield from Order.find(id)
     return order
 
 @post('/api/orders')
