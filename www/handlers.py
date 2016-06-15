@@ -11652,7 +11652,7 @@ def api_orders(*, page='1'):
     p = Page(num, page_index, 30)
     if num == 0:
         return dict(page=p, orders=())
-    orders = yield from Order.findAll(orderBy='created_at desc', limit=(p.offset, p.limit))
+    orders = yield from Order.findAll(orderBy='created_at desc')
     return dict(page=p, orders=orders)
 
 @get('/api/orders/{id}')
